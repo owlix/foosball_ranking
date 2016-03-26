@@ -21,16 +21,16 @@ $(document).ready(function(){
 				that.addClass('error');
 			}
 		})
-		
-		
 	});
 
   	$(".owl-carousel").owlCarousel({
+  		animateOut: 'slideOutUp',
+    	animateIn: 'slideInUp',
   		loop:true,
   		autoplay:true,
   		items:1,
+  		smartSpeed:100
   	});	
-
 });
 
 $.urlParam = function(name){

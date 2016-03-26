@@ -30,17 +30,19 @@
     <div id="status">&nbsp;</div>
   </div>
   <header>
-    <div class="header-inner">
-      <div class="row"> 
-        <div class="twelve columns">
-          <h1>Foosball Ranker</h1>
-          <nav>
-            <ul>
-              <li><a href="index.php" class="button button-primary">Rankings</a></li>
-              <li><a href="log-game.php" class="button button-primary">Log Games</a></li>
-              <li><a href="add-player.php" class="button button-primary cta">Join!</a></li>
-            </ul>
-          </nav>
+    <div class="container">
+      <div class="header-inner">
+        <div class="row"> 
+          <div class="twelve columns">
+            <h1 class="logo">Foosball Ranker</h1>
+            <nav>
+              <ul>
+                <li><a href="index" class="button button-primary">Rankings</a></li>
+                <li><a href="log-game" class="button button-primary">Log Games</a></li>
+                <li><a href="add-player" class="button button-primary cta">Sign Up!</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

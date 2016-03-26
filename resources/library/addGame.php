@@ -1,6 +1,5 @@
 <?php
-//ini_set('display_errors', true);
-require_once("../config.php");
+ob_start();
 require_once(LIBRARY_PATH . "/functions.php");
 
 $p1 = $_POST["p1"];
@@ -28,11 +27,15 @@ for($i=0; $i<count($p1score); $i++) {
 		$rating1 = $rating['a'];
 		$rating2 = $rating['b'];
 	
-		mysql_query("update players set rank = '$rating1' where id = '$p2'");
-		mysql_query("update players set rank = '$rating2' where id = '$p1'"); 
+		$sql = "update players set rank = '$rating1' where id = '$p2'";
+		mysql_query($sql);
+		$sql ="update players set rank = '$rating2' where id = '$p1'"; 
+		mysql_query($sql);
 		
-		mysql_query("insert into rank (rank, player_id) values ('$rating1', '$p2')");
-		mysql_query("insert into rank (rank, player_id) values ('$rating2', '$p1')");
+		$sql = "insert into rank (rank, player_id) values ('$rating1', '$p2')";
+		mysql_query($sql);
+		$sql = "insert into rank (rank, player_id) values ('$rating2', '$p1')";
+		mysql_query($sql);
 	
 
 	} elseif ($outcome === 2) {
@@ -44,20 +47,20 @@ for($i=0; $i<count($p1score); $i++) {
 		$rating1 = $rating['a'];
 		$rating2 = $rating['b'];
 		
-		mysql_query("update players set rank = '$rating1' where id = '$p1'");
-		mysql_query("update players set rank = '$rating2' 'where id = '$p2'"); 
+		$sql = "update players set rank = '$rating1' where id = '$p1'";
+		mysql_query($sql);
+		$sql = "update players set rank = '$rating2' 'where id = '$p2'";
+		mysql_query($sql); 
 		
-		mysql_query("insert into rank (rank, player_id) values ('$rating1', '$p1')");
-		mysql_query("insert into rank (rank, player_id) values ('$rating2', '$p2')");
+		$sql = "insert into rank (rank, player_id) values ('$rating1', '$p1')";
+		mysql_query($sql);
 
-		
+		$sql = "insert into rank (rank, player_id) values ('$rating2', '$p2')";
+		mysql_query($sql);
+	
 	}
 }
 
-mysql_close($con); 
-// echo $_SERVER['REQUEST_URI'];
-// echo $_SERVER['SERVER_NAME'];
-
-header('Location: ../../index.php'); 
+mysql_close($con);
 
 ?> 

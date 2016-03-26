@@ -3,15 +3,17 @@
 ?>
 <div class="container"> 
   <div class="row">
-  <h5>Log Games</h5>
+    <div class="four column offset-by-one">
+      <div class="row">
+  <h1>Log Games</h1>
   <h6>Select opponents and enter scores for each match.</h6>
-    <form action="../resources/library/addGame.php" method="post" id="log-game-form">
+    <form action="game-submit.php" method="post" id="log-game-form">
      <div class="row">
       <div class="three columns">
         <label >Player 1</label>
         <select name="p1">
          <?php
-         populateDropDown();
+          populateDropDown();
          ?>
        </select>
      </div>
@@ -19,7 +21,7 @@
       <label >Player 2</label>
       <select name="p2">
         <?php
-        populateDropDown();
+          populateDropDown();
         ?>
       </select>
     </div>
@@ -64,4 +66,6 @@
   </div>
 </form>
 </div>
+    </div>
+  </div>
 </div>

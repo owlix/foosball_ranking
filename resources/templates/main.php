@@ -4,17 +4,18 @@ require_once(LIBRARY_PATH . "/functions.php");
 ?>
 <div class="container">
   <div class="row">
-    <div class="nine columns">
-      <h5>Current Rankings</h5>
+  <div class="nine columns">
+      <h1>Current Rankings</h1>
       <table class="u-full-width">
         <thead>
           <tr>
+            <th>Rank</th>
             <th>Name</th>
             <th>Wins</th>
             <th>Losses</th>
             <th>Games Played</th>
             <th>Win Pct</th>
-            <th>Ranking</th>
+            <th>Rating</th>
           </tr>
         </thead>
         <tbody>
@@ -24,8 +25,8 @@ require_once(LIBRARY_PATH . "/functions.php");
         </tbody>
       </table>
     </div>
-    <div class="three columns">
-      <h5>Recent Games</h5>
+    <div class="three columns ">
+      <h1>Recent Games</h1>
       <?php      
       require_once(TEMPLATES_PATH . "/slider.php");
       ?>

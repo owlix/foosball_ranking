@@ -1,7 +1,8 @@
 <?php
-//ini_set('display_errors', true);
-require_once("../config.php");
-//require_once(LIBRARY_PATH . "/functions.php");
+
+//require_once("../config.php");
+
+// echo "test";
 
 $pid = $_POST["id"];
 
@@ -15,10 +16,6 @@ while($r = mysql_fetch_assoc($result)) {
     $rows[] = $r;
 }
 
-print json_encode($rows);
-
-// while ($row = mysql_fetch_array($result)) {
-// 	echo json_encode($row);
-// }
+echo json_encode($rows);
 
 ?>
