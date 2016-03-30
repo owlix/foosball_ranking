@@ -26,15 +26,17 @@ for($i=0; $i<count($p1score); $i++) {
 		
 		$rating1 = $rating['a'];
 		$rating2 = $rating['b'];
-	
-		$sql = "update players set rank = '$rating1' where id = '$p2'";
-		mysql_query($sql);
-		$sql ="update players set rank = '$rating2' where id = '$p1'"; 
-		mysql_query($sql);
 		
 		$sql = "insert into rank (rank, player_id) values ('$rating1', '$p2')";
 		mysql_query($sql);
+
 		$sql = "insert into rank (rank, player_id) values ('$rating2', '$p1')";
+		mysql_query($sql);
+
+		$sql = "update players set rank = '$rating1' where id = '$p2'";
+		mysql_query($sql);
+		
+		$sql ="update players set rank = '$rating2' where id = '$p1'"; 
 		mysql_query($sql);
 	
 
@@ -47,16 +49,17 @@ for($i=0; $i<count($p1score); $i++) {
 		$rating1 = $rating['a'];
 		$rating2 = $rating['b'];
 		
-		$sql = "update players set rank = '$rating1' where id = '$p1'";
-		mysql_query($sql);
-		$sql = "update players set rank = '$rating2' 'where id = '$p2'";
-		mysql_query($sql); 
-		
 		$sql = "insert into rank (rank, player_id) values ('$rating1', '$p1')";
 		mysql_query($sql);
 
 		$sql = "insert into rank (rank, player_id) values ('$rating2', '$p2')";
 		mysql_query($sql);
+
+		
+		$sql = "update players set rank = '$rating1' where id = '$p1'";
+		mysql_query($sql);
+		$sql = "update players set rank = '$rating2' 'where id = '$p2'";
+		mysql_query($sql); 
 	
 	}
 }

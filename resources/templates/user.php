@@ -1,6 +1,4 @@
 <?php
-
-require_once("../resources/config.php");
 require_once(LIBRARY_PATH . "/functions.php");
 
 $id = $_GET['id']; 
@@ -19,11 +17,10 @@ $players = mysql_query("SELECT id, name, game_id, player1, player2 FROM players 
 
 $ranking = mysql_query("SELECT * from players order by rank desc");
 
-$winPercentage = round(($info['win'] / ($info['win'] + $info['loss'])),3);
-
+$winPercentage = winPercentage($info['win'], $info['loss']);
 ?>
 
-<div class="container">
+<div class="container main">
   <div class="row">
     <div class="five columns profile">
       <div class="profile-info">
@@ -31,9 +28,10 @@ $winPercentage = round(($info['win'] / ($info['win'] + $info['loss'])),3);
           <h1><?php echo $info['name']; ?></h1>
         </div>
         <div class="profile-body">
-          <h5>Current Rank: <?php echo getRanking($id, $ranking); ?></h5>
+          <h5>Current Rank: <span><?php echo getRanking($id, $ranking); ?></span></h5>
           <h5>Current Rating: <?php echo $info['rank']; ?></h5>
           <h6>Win Percentage: <?php echo $winPercentage ?>%</h6>
+          <h6>W/L: <?php echo $info['win'] . ' - ' . $info['loss'] ?></h6>
         </div>
       </div>
     </div>
@@ -44,7 +42,7 @@ $winPercentage = round(($info['win'] / ($info['win'] + $info['loss'])),3);
       </div>
       <script>
 
-       $.ajax({
+      $.ajax({
         method: "POST",
         url: "get-rank-data.php",
         data: { id: $.urlParam('id') },
@@ -56,7 +54,6 @@ $winPercentage = round(($info['win'] / ($info['win'] + $info['loss'])),3);
 
           alldata.push(parseInt(data[i].rank));
         }
-        console.log(alldata);
         createChart(alldata.reverse());
 
       });
@@ -96,7 +93,7 @@ $winPercentage = round(($info['win'] / ($info['win'] + $info['loss'])),3);
           <th>Opponent</th>
           <th>Score</th>
           <th>Outcome</th>
-          <th>Date</th>
+          <th class="mobile-hide">Date</th>
         </tr>
       </thead>
       <tbody>
@@ -119,7 +116,7 @@ $winPercentage = round(($info['win'] / ($info['win'] + $info['loss'])),3);
           .  $user_score . " - ". $opp_score
           . "</td><td>"
           . $wl
-          . "</td><td>"
+          . "</td><td class=mobile-hide>"
           . $date
           . "</td></tr>";
         }

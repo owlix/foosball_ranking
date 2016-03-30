@@ -1,9 +1,5 @@
 <?php
 
-//require_once("../config.php");
-
-// echo "test";
-
 $pid = $_POST["id"];
 
 $sql = "select rank from rank where player_id=$pid order by game_id desc LIMIT 10";

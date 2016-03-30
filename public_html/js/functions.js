@@ -4,11 +4,17 @@ $(document).ready(function(){
 		var data = $('#user-input').val();
 
 		if (data.length < 1) {
+			
 			$('#user-input').addClass('error');
 			e.preventDefault();
 			return
+		
+		} else {
+			
+			$('#user-input').removeClass('error');
+			return
 		}
-		return
+		
 	})
 
 	$('#log-game-form').on('submit', function(e){
@@ -19,6 +25,8 @@ $(document).ready(function(){
 			if (data.length < 1){
 				e.preventDefault();
 				that.addClass('error');
+			} else {
+				that.removeClass('error');
 			}
 		})
 	});
@@ -30,8 +38,31 @@ $(document).ready(function(){
   		autoplay:true,
   		items:1,
   		smartSpeed:100
-  	});	
+  	});
+	$('#search').selectize({
+	    //sortField: 'text'
+	    placeholder: 'Select Player',
+	});
+  	
+  	$('select').selectize({
+	    //sortField: 'text'
+	    placeholder: 'Click here to select ...',
+	});	
+
+		
+
+	$('.mobile-menu').on('click', function(){
+		$('.nav').slideToggle();
+		if ( $(this).text() === 'Menu'){
+			$(this).text('Close');
+		} else {
+			$(this).text('Menu');
+		}
+	});
 });
+
+
+
 
 $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);

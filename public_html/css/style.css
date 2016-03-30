@@ -4,7 +4,16 @@
 /** Defaults **/
 * { padding: 0; margin: 0; outline: 0; }
 
-body { background: #fff;   font-family: 'Noto Sans', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow: hidden; height: 100vh;  letter-spacing: .5px}
+body { 
+  background: #fff; 
+  color:#303030; 
+  font-family: 'Noto Sans', sans-serif; 
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale; 
+  overflow: hidden; 
+  height: 100vh;  
+  letter-spacing: .5px
+}
 
 /* Preloader */
 #preloader {
@@ -41,19 +50,37 @@ input[type="submit"],
 input[type="reset"], 
 input[type="button"] {
   font-size: 12px;
-
 }
 
+input[type="text"],
+input[type="number"]  {
+  border-color: #b8b8b8;
+  color: #303030;
+}
 
-.logo {font-size: 2.5em; font-weight: bold;visibility: hidden;}
+a {text-decoration: none;}
+
+.selectize-control.single .selectize-input, 
+.selectize-control.single .selectize-input input {height: initial;box-shadow: none;background: #fff;font-size:15px;     width: 200px;}
+
+.selectize-control.single .selectize-input:focus, 
+.selectize-control.single .selectize-input input:focus{ border: 1px solid #33C3F0; outline: 0;}
+#log-game-form .selectize-control.single .selectize-input,
+#log-game-form .selectize-control.single .selectize-input input, #log-game-form .selectize-control.single {width: 100%;}
+
+.logo {font-size: 2.5em; font-weight: bold;}
 
 header .header-inner {height: 100%;}
 header h1 {display: inline-block; width:auto;}
 
-nav {display: inline-block;width: auto;vertical-align: middle; margin:20px; float: right;}
+nav {display: inline-block;width: 96%;vertical-align: middle; margin:20px;}
+nav ul:nth-of-type(1) {float: left;}
+nav ul:nth-of-type(2) {float: right;}
 nav ul li {list-style: none; display: inline-block;}
-
-input {margin-bottom: 10px;}
+/*.search .selectize-control.single {margin-top: 6px; width: 147px!important;}
+.search .selectize-control.single .selectize-input, .search .selectize-control.single .selectize-input input {padding:8px; width: 147px!important;}
+.search .selectize-control, .search button {display: inline-block;vertical-align: middle; min-height: 38px;}
+*/input {margin-bottom: 10px; color:#000;}
 select {width: 100%;}
 
 a.cta, input.cta {background-color:#F03333!important; border-color:#F03333!important;  }
@@ -61,7 +88,11 @@ a.cta:hover, input.cta:hover {background-color:#DC3333!important; border-color:#
 label, th { text-transform: uppercase; }
 tbody tr:hover { background: rgba(51, 195, 240, 0.1); cursor: pointer;}
 
+.search-form button {float: right; display: inline-block;}
+.selectize-control.single {display: inline-block;margin-right: 20px;}
+
 .container {min-width: 96%;}
+.main {min-height: calc(70vh);}
 
 
 .win {color:#00FF5A;}
@@ -72,13 +103,13 @@ tbody tr:hover { background: rgba(51, 195, 240, 0.1); cursor: pointer;}
 .tag.h { background-color: #F09333;}
 
 .rank-chart { margin-bottom: 40px; max-height: 400px; max-width: 600px; position: relative;}
-.rank-chart canvas { max-height: 400px!important; }
+.rank-chart canvas {max-width: 380px!important;max-height: 253px!important;overflow: hidden;}
 
 .profile {position: relative;bottom: 0;left: 0;}
 .profile-info {border-radius: 5px;border: solid 2px #33C3F0;background: #fff;color:#000;padding: 0px 0px 10px;}
-.profile-head {background: #33C3F0;color:#fff;width: 100%;height: 100%; padding: 10px 0px;text-align: left;}
+.profile-head {background: #33C3F0;color:#fff; padding: 10px 0px;text-align: left;}
 .profile-head h1 {margin: 0; padding: 0 20px;}
-.profile-body {padding: 10px 20px; width: 100%; height: 100%; }
+.profile-body {padding: 10px 20px;}
 
 .recent-games {border: 1px solid #E1E1E1;border-radius: 5px;text-align: center;width: 100%;position: relative;top: 20px;}
 .recent-games ul {list-style: none;}
@@ -90,8 +121,19 @@ tbody tr:hover { background: rgba(51, 195, 240, 0.1); cursor: pointer;}
 footer {position: relative; width:100%; bottom: 0;}
 footer .footer-inner { padding:20px 40px; text-align: center;}
 
-input.error{border-color: red;}
+input.error{border-color: red; background: #FF6E6E}
+
+button.mobile-menu {display:none;} 
 
 @media (max-width:767px) {
   .tag {font-size:10px;}
-}
+  .mobile-hide {display:none;}
+  nav {width: 90%;}
+  nav ul:nth-of-type(1) {float: none;}
+  .nav ul li {display:block; margin: 0 auto; max-width: 120px;}
+  .nav ul li a {margin-left: auto;  margin-right: auto; max-width: 120px;}
+  .nav {display: none; width: 100%; margin-top: 20px;}
+  button.mobile-menu {display:block;margin:0 auto;}
+
+/*  nav {display:none;}
+*/}

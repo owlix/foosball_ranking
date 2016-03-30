@@ -10,32 +10,56 @@ function calcWin($s1, $s2){
 }
 
 function getPlayers() {
+	$sql = "select id, name, win, loss, rank from players order by rank desc";
 
-	$result = mysql_query("select id, name, win, loss, games_played, win_percent, rank from players order by rank desc");  
+	$result = mysql_query($sql);  
 	$count = 0;
+	if($result === FALSE) { 
+  	  
+  		echo mysql_error(); // TODO: better error handling
 
-	while ($row = mysql_fetch_array($result)) { 
-		$count = $count + 1;
-		echo "<tr><td>"
-		. $count
-		. "</td><td><a href=user.php?id="
-		. $row["id"] 
-		.'>'
-		. $row["name"] 
-		. "</a></td><td>" 
-		. $row["win"] 
-		. "</td><td>" 
-		. $row["loss"] 
-		. "</td><td>"
-		. ($row["win"] + $row["loss"]) 
-		. "</td><td>" 
-		. (round(($row["win"] / ($row["win"] + $row["loss"])),3))
-		.'%'
-		. "</td><td>" 
-		. $row["rank"] 
-		. "</td></tr>";
-	}  
-	mysql_close($con);  
+	} else {
+
+		while ($row = mysql_fetch_array($result)) { 
+			$winpercent = 
+			$count = $count + 1;
+			echo "<tr><td>"
+			. $count
+			. "</td><td><a href=user.php?id="
+			. $row["id"] 
+			.'>'
+			. $row["name"] 
+			. "</a></td><td>" 
+			. $row["win"] 
+			. "</td><td>" 
+			. $row["loss"] 
+			. "</td><td class=mobile-hide>"
+			. ($row["win"] + $row["loss"]) 
+			. "</td><td>" 
+			. winPercentage( $row["win"], $row["loss"] )
+			. "</td><td>" 
+			. $row["rank"] 
+			. "</td></tr>";
+		}  
+	}
+}
+
+function winPercentage($win, $loss) {
+	
+	if ($win > 0 || $loss > 0) {
+		
+		$percent = round(($win / ($win + $loss)),3);
+		if ($percent < 1) {
+
+			return '.' . $percent * 1000;//number_format( $percent, 3, '.', '');
+
+		} else {
+			return '1.000';
+		}
+
+	}else {
+		return 0;
+	}
 }
 
 function populateDropDown() {
@@ -43,7 +67,6 @@ function populateDropDown() {
 	while ($row = mysql_fetch_array($result)) {  
 		echo "<option value=" . $row["id"] . ">". $row["name"] . "</option>";
 	}  
-	mysql_close($con);  
 }
 
 function ratePlayers($p1, $p2){

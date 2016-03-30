@@ -1,5 +1,4 @@
 <?php
-  require_once("../resources/config.php");
   require_once(LIBRARY_PATH . "/functions.php");
 
   $sql = "select g.game_id, p1.name as 'player1', p2.name as 'player2', s.p1_score, s.p2_score from games g inner join players p1 on (g.player1 = p1.id) inner join players p2 on (g.player2 = p2.id) inner join scores s on (g.game_id = s.game_id) order by g.game_id desc limit 5";
