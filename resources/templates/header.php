@@ -18,9 +18,9 @@
               <button class="mobile-menu">Menu</button>
               <div class="nav">
                 <ul>
-                  <li><a href="add-player" class="button button-primary">Sign Up</a></li>
                   <li><a href="index" class="button button-primary">Rankings</a></li>
                   <li><a href="log-game" class="button button-primary">Log Games</a></li>
+                  <li><a href="add-player" class="button">Sign Up</a></li>
                 </ul>
                 <ul class="mobile-hide">
                   <li><form class="search-form" action="user.php">

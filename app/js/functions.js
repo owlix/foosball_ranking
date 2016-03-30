@@ -39,17 +39,10 @@ $(document).ready(function(){
   		items:1,
   		smartSpeed:100
   	});
-	$('#search').selectize({
+	$('select').selectize({
 	    //sortField: 'text'
 	    placeholder: 'Select Player',
-	});
-  	
-  	$('select').selectize({
-	    //sortField: 'text'
-	    placeholder: 'Click here to select ...',
-	});	
-
-		
+	});		
 
 	$('.mobile-menu').on('click', function(){
 		$('.nav').slideToggle();
