@@ -88,6 +88,11 @@ a.cta:hover, input.cta:hover {background-color:#DC3333!important; border-color:#
 label, th { text-transform: uppercase; }
 tbody tr:hover { background: rgba(51, 195, 240, 0.1); cursor: pointer;}
 
+.remove {float: right;margin-top: -40px;position: relative;right: -30px;cursor: pointer;transition:all .4s;display: none;}
+.remove:hover {color:red;}
+#add-game {font-size: 20px;cursor: pointer;}
+.button-row {margin:20px 0 20px;}
+
 .search-form button {float: right; display: inline-block;}
 .selectize-control.single {display: inline-block;margin-right: 20px;}
 

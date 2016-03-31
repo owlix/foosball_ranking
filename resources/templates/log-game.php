@@ -40,8 +40,10 @@ require_once(LIBRARY_PATH . "/functions.php");
         <input class="u-full-width score-input" type="number" placeholder="Player 2 Score" name="p2-score[]">
       </div>
     </div>
-    <input id="add-game" type="button" value="+">
     <div class="row button-row">
+    <span> Add another game <i class="fa fa-plus-circle" id="add-game" title="Additional Game"></i></span>
+    </div>
+    <div class="row ">
       <div class="six columns">
         <input class="button-primary" type="submit" value="Log Games">
       </div>
@@ -57,9 +59,46 @@ $('#add-game').on('click', function(e) {
   e.preventDefault();
 
   count = count + 1;
-  var rowTemplate = '<div class="row"><div class="three columns"><label>Game ' + count + '</label></div></div><div class="row form-row"><div class="three columns"><input class="u-full-width score-input" type="number" placeholder="Player 1 Score" name="p1-score[]"></div><div class="three columns"><input class="u-full-width score-input" type="number" placeholder="Player 2 Score" name="p2-score[]"></div></div>';
+  var rowTemplate = '<div class="game-holder animated" style="display:none;"><div class="row"><div class="three columns"><label>Game ' + count + '</label></div></div><div class="row form-row"><div class="three columns"><input class="u-full-width score-input" type="number" placeholder="Player 1 Score" name="p1-score[]"></div><div class="three columns"><input class="u-full-width score-input" type="number" placeholder="Player 2 Score" name="p2-score[]"><i class="fa fa-times remove"></i></div></div></div>';
+  $('.button-row').before(rowTemplate);
+  $('.game-holder').last().slideToggle('fast');
+  $('.game-holder').last().addClass('fadeIn');
+        displayRemove();
 
-  $('#add-game').before(rowTemplate);
-    
 });
-</script
+
+
+
+$(document).on('click', '.remove', function(e) {
+  e.preventDefault();
+  count = count - 1;
+  $(this).closest('.game-holder').addClass('slideOutUp');
+
+  var that = $(this);
+  setTimeout(function() {
+     $(that).closest('.game-holder').slideToggle('fast', function(){
+        $(that).closest('.game-holder').remove();
+        displayRemove();
+    });
+
+   }, 150);
+  
+});
+
+function displayRemove() {
+   var $set = $('.remove');
+  $('.remove').each(function(index, element){
+    index = index + 1;    
+    console.log(index);
+    console.log($set.length);
+    if(index < $set.length){
+      $(this).css('display', 'none');
+    } else {
+       $(this).css('display', 'block');
+    }
+  });
+}
+
+</script>
+
+
