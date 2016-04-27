@@ -1,6 +1,5 @@
 <?php
-//function createTable(){
-require_once("../config.php");
+//require_once("../config.php");
 
 $sql = "create table players (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -11,10 +10,11 @@ $sql = "create table players (
 	updated_date TIMESTAMP
 )";
 
-mysql_query($sql); 
+mysql_query($sql);
 
 $sql = "create table games (
 	game_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	match_id INT(6),
 	player1 VARCHAR(30) NOT NULL,
 	player2 VARCHAR(30) NOT NULL,
 	created_date TIMESTAMP
@@ -40,7 +40,22 @@ $sql = "create table rank (
 
 mysql_query($sql);
 
+$sql = "create table matches (
+	match_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	winner INT(6) NOT NULL,
+	loser INT(6) NOT NULL,
+	outcome VARCHAR(30) NOT NULL,
+	created_date TIMESTAMP
+)";
+
+$lastTable = mysql_query($sql);
+
+if (! $lastTable ) {
+	echo "Tables didn't make it!";
+} else {
+	echo "Tables Created!";
+}
+
 mysql_close($con); 
 	
-//}
 ?>

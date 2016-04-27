@@ -103,8 +103,10 @@ function updateGames($p1, $p2){
 
 	$p1_games = mysql_query("select win from players where id = '$p1'"); 
 	$p2_games = mysql_query("select loss from players where id = '$p2'");
+	
 	$row1 = mysql_fetch_array($p1_games);
 	$row2 = mysql_fetch_array($p2_games);
+	
 	$win = $row1["win"];
 	$loss = $row2["loss"];
 

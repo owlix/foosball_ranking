@@ -12,7 +12,7 @@ require_once(LIBRARY_PATH . "/functions.php");
             <th>Name</th>
             <th>Win</th>
             <th>Loss</th>
-            <th class="mobile-hide">Games Played</th>
+            <th class="mobile-hide">Matches Played</th>
             <th>Pct</th>
             <th>Rating</th>
           </tr>

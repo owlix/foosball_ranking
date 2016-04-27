@@ -9,8 +9,9 @@ $result = mysql_query($sql);
 
 $info = mysql_fetch_array($result);
 
-$sql = "SELECT scores.game_id, player1, p1_score, player2, p2_score, games.created_date FROM games INNER JOIN scores ON scores.game_id = games.game_id where player1 = '$id' or player2 = '$id' order by game_id desc";
+//$sql = "SELECT scores.game_id, player1, p1_score, player2, p2_score, games.created_date FROM games INNER JOIN scores ON scores.game_id = games.game_id where player1 = '$id' or player2 = '$id' order by game_id desc";
 
+$sql = "SELECT matches.match_id, winner, loser, outcome, id, name, matches.created_date FROM matches INNER JOIN players ON matches.winner = players.id OR matches.loser = players.id WHERE players.id = '$id' order by match_id DESC";
 $result = mysql_query($sql);
 
 $players = mysql_query("SELECT id, name, game_id, player1, player2 FROM players INNER JOIN games ON player1 = id OR player2 = id order by game_id desc");
@@ -102,21 +103,16 @@ $winPercentage = winPercentage($info['win'], $info['loss']);
 
           $date = convertDate($value['created_date']);
 
-          $user_score = chooseColumn($value['player1'], $value['p1_score'], $value['p2_score']);
-
-          $opp_score = chooseColumn($value['player1'], $value['p2_score'], $value['p1_score']);
-
-          $wl = outcome($user_score, $opp_score);
+          $wl = testOutcome($value['winner']);
 
           echo 
           "<tr><td>"
-          . displayOpp($value['player1'], $value['player2'], $players)
-          .  tag($user_score, $opp_score)
+          . displayOpp($value['winner'], $value['loser'], $players)
           . "</td><td>"
-          .  $user_score . " - ". $opp_score
+          .  $value['outcome']
           . "</td><td>"
           . $wl
-          . "</td><td class=mobile-hide>"
+          . "</td><td>"
           . $date
           . "</td></tr>";
         }
@@ -142,18 +138,18 @@ function chooseColumn($a, $c, $d) {
 
 }
 
-function tag($i, $j){
+// function tag($i, $j){
   
-  if ($i === '10' and $j === '0') {
+//   if ($i === '10' and $j === '0') {
     
-    return "<span class='tag f'>FATALITY</span>";
+//     return "<span class='tag f'>FATALITY</span>";
   
-  } elseif ($i === '9' and $j < '2') {
+//   } elseif ($i === '9' and $j < '2') {
    
-    return "<span class='tag h'>HUMILIATION</span>";
+//     return "<span class='tag h'>HUMILIATION</span>";
   
-  }
-}
+//   }
+// }
 
 function displayOpp ($p1, $p2, $ps){
 
@@ -190,6 +186,15 @@ function getRanking($a, $b){
       return $count;
 
     }
+  }
+}
+
+function testOutcome($winner) {
+  $id = $_GET['id'];
+  if ($winner === $id) {
+    return "W";
+  } else {
+    return "L";
   }
 }
 
