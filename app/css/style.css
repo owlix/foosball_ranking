@@ -60,6 +60,8 @@ input[type="number"]  {
 
 a {text-decoration: none;}
 
+th,td {text-align: center;}
+
 .selectize-control.single .selectize-input, 
 .selectize-control.single .selectize-input input {height: initial;box-shadow: none;background: #fff;font-size:15px;     width: 200px;}
 
